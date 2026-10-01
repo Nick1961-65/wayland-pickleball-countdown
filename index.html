@@ -2,51 +2,86 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wayland Pickleball Vacation Countdown</title>
+<title>Wayland Pickleball Vacation</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: white;
+  background:
+    linear-gradient(rgba(0,120,170,.35), rgba(255,180,80,.35)),
+    linear-gradient(#28b7e8 0%, #8edcf5 48%, #f7c66b 49%, #f3a84f 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(#65c7f7, #f7d794);
-  color: white;
 }
 
 .container {
-  padding: 25px;
-  width: 90%;
-  max-width: 600px;
+  width: 94%;
+  max-width: 700px;
+  padding: 30px 18px 35px;
+  background: rgba(0,0,0,.22);
+  border-radius: 28px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
 }
 
-h1 {
-  font-size: 30px;
+.palm {
+  font-size: 55px;
   margin-bottom: 5px;
 }
 
+h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,.35);
+}
+
 h2 {
-  font-size: 22px;
-  margin-top: 5px;
+  margin: 8px 0 22px;
+  font-size: 21px;
+  letter-spacing: 1px;
 }
 
 .destination {
-  font-size: 18px;
-  margin: 20px 0;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.date {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 #countdown {
-  font-size: 28px;
+  background: rgba(255,255,255,.92);
+  color: #087ca1;
+  border-radius: 20px;
+  padding: 18px 8px;
+  font-size: 27px;
   font-weight: bold;
   line-height: 1.6;
+  box-shadow: 0 5px 15px rgba(0,0,0,.2);
 }
 
-.footer {
+.message {
   margin-top: 25px;
-  font-size: 17px;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.ball {
+  font-size: 38px;
+  margin-top: 12px;
 }
 </style>
 </head>
@@ -55,27 +90,36 @@ h2 {
 
 <div class="container">
 
-  <h1>🏓 WAYLAND PICKLEBALL GROUP 🏓</h1>
+  <div class="palm">🌴 🏓 🌴</div>
 
-  <h2>🌴 ANNUAL VACATION COUNTDOWN 🌴</h2>
+  <h1>WAYLAND PICKLEBALL GROUP</h1>
+
+  <h2>ANNUAL VACATION COUNTDOWN</h2>
 
   <div class="destination">
-    Plantation Palms<br>
-    Fort Morgan, Alabama<br><br>
+    🌊 Plantation Palms 🌊<br>
+    Fort Morgan, Alabama
+  </div>
+
+  <div class="date">
     November 14, 2026
   </div>
 
   <div id="countdown"></div>
 
-  <div class="footer">
-    Get your paddles ready! 🏓🌊☀️
+  <div class="message">
+    Get your paddles ready!<br>
+    The beach is waiting! ☀️🌴
   </div>
+
+  <div class="ball">🏓 🏓 🏓</div>
 
 </div>
 
 <script>
 
-var vacation = new Date("November 14, 2026 00:00:00 GMT-0500").getTime();
+var vacation =
+new Date("November 14, 2026 00:00:00 GMT-0500").getTime();
 
 var timer = setInterval(function() {
 
@@ -83,10 +127,24 @@ var timer = setInterval(function() {
 
   var distance = vacation - now;
 
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  var days = Math.floor(
+    distance / (1000 * 60 * 60 * 24)
+  );
+
+  var hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24))
+    / (1000 * 60 * 60)
+  );
+
+  var minutes = Math.floor(
+    (distance % (1000 * 60 * 60))
+    / (1000 * 60)
+  );
+
+  var seconds = Math.floor(
+    (distance % (1000 * 60))
+    / 1000
+  );
 
   document.getElementById("countdown").innerHTML =
     days + " DAYS<br>" +
@@ -95,9 +153,13 @@ var timer = setInterval(function() {
     seconds + " SECONDS";
 
   if (distance < 0) {
+
     clearInterval(timer);
+
     document.getElementById("countdown").innerHTML =
-      "🏓 VACATION TIME! 🏓<br>🌴 LET'S GO! 🌴";
+      "🏓 VACATION TIME! 🏓<br>" +
+      "🌴 LET'S GO! 🌴";
+
   }
 
 }, 1000);
